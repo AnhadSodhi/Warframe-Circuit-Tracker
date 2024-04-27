@@ -4,7 +4,7 @@ A Python webcrawler app to track the current week of the Circuit in the game War
 
 ## How it works
 * For the week and the corresponding warframes, it queries the Warframe wiki page for the Circuit (https://warframe.fandom.com/wiki/The_Circuit)
-* For the pictures of the Warframes, it uses the first image from a google search of the Warframe
+* For the pictures of the Warframes, it uses the first image from a google search
 
 ## Usage instructions
 * For Windows 10/11, download and run the provided .exe file
