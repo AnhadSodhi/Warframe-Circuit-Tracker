@@ -1,5 +1,5 @@
 # Warframe-Circuit-Tracker
-A simple Python webcrawler app to track the current week of the Circuit in the game Warframe
+A Python webcrawler app to track the current week of the Circuit in the game Warframe
 ![image](https://github.com/AnhadSodhi/Warframe-Circuit-Tracker/assets/96636073/f7ae594d-a2a1-456a-8d09-d05de0f29b0b)
 
 ## How it works
