@@ -4,6 +4,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import urllib.request
 import io
+import re
 
 WarframesPerWeek = [
     ["Excalibur", "Trinity", "Ember"],
@@ -26,8 +27,10 @@ def getCurrentCircuitCode():
 
 def getCurrentWeek(circuitHTML):
     strong_tag = circuitHTML.find("strong")
-    week = strong_tag.text.strip()
-    return int(week[5])
+    week_text = strong_tag.text.strip()
+    week_number = re.search(r'\d+', week_text).group()
+    return int(week_number)
+
 
 def getCurrentWarframes(week):
     return WarframesPerWeek[week-1]
