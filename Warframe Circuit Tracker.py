@@ -24,10 +24,6 @@ def getCurrentWeek():
     currentDate = datetime.datetime.now(datetime.timezone.utc)
     currentDay = currentDate.day
     currentWeek = (currentDay // 7) % 52 + 10
-
-    if currentWeek == 12:
-        currentWeek = 1
-
     return currentWeek
 
 def getCurrentWarframes(week):
