@@ -4,7 +4,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import urllib.request
 import io
-import datetime
+import re
 
 WarframesPerWeek = [
     ["Excalibur", "Trinity", "Ember"],
@@ -20,11 +20,17 @@ WarframesPerWeek = [
     ["Garuda", "Baruuk", "Hildryn"]
 ]
 
-def getCurrentWeek():
-    currentDate = datetime.datetime.now(datetime.timezone.utc)
-    currentDay = currentDate.day
-    currentWeek = (currentDay // 7) % 52 + 10
-    return currentWeek
+def getCurrentCircuitCode():
+    allCode = requests.get("https://warframe.fandom.com/wiki/The_Circuit").content
+    soup = BeautifulSoup(allCode, "html.parser")
+    return soup.find_all("tr", bgcolor="#777")
+
+def getCurrentWeek(circuitHTML):
+    strong_tag = circuitHTML.find("strong")
+    week_text = strong_tag.text.strip()
+    week_number = re.search(r'\d+', week_text).group()
+    return int(week_number)
+
 
 def getCurrentWarframes(week):
     return WarframesPerWeek[week-1]
@@ -70,7 +76,8 @@ def displayContent(week, warframes, warframePictures):
     root.mainloop()
 
 def main():
-    week = getCurrentWeek()
+    circuitHTML = getCurrentCircuitCode()
+    week = getCurrentWeek(circuitHTML[0])
     warframes = getCurrentWarframes(week)
     warframePictures = [getWarframePicture(warframe) for warframe in warframes]
 
